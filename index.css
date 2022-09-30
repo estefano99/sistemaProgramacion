@@ -1,0 +1,57 @@
+/* NAVBAR */
+nav{
+    background-image: url("./imagenes/navbar_fondo.jpeg");
+    /* background-color: orange; */
+}
+
+/* ------------------------------------- */
+
+.div-logo-nav{
+    margin-left: 10%;
+}
+/* A HREF LOGO NABAR */
+/* .a-img-logo{
+    width: 50px;
+    height: 50px;
+} */
+/* IMAGEN LOGO NAVBAR */
+.img-logo{
+    width: 100px;
+    height: 100px;
+}
+
+/* -------------------------- */
+
+/* ITEMS NAVBAR */
+.div-items-nav{
+    display: flex;
+    justify-content: end;
+    margin-right: 10%;
+}
+
+.ronnie_portada{
+    height:500px;
+    width: 500px;
+}
+
+
+/* PRODUCTOS */
+
+.ronnie_portada{
+    height:500px;
+    width: 500px;
+}
+.div_titulo{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+h1{
+    font-size: 50px;
+}
+
+/* PROVEEDORES */
+
+/* #tablaProveedores{
+  
+} */
