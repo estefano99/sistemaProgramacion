@@ -1,32 +1,99 @@
 /* NAVBAR */
 nav{
-    background-image: url("./imagenes/navbar_fondo.jpeg");
-    /* background-color: orange; */
+    background-color:rgb(255,84,34);
 }
 
-/* ------------------------------------- */
-
-.div-logo-nav{
-    margin-left: 10%;
+a{
+    color: #183153;
+    text-decoration: none !important;   
 }
-/* A HREF LOGO NABAR */
-/* .a-img-logo{
-    width: 50px;
-    height: 50px;
-} */
-/* IMAGEN LOGO NAVBAR */
-.img-logo{
-    width: 100px;
-    height: 100px;
-}
-
-/* -------------------------- */
-
 /* ITEMS NAVBAR */
 .div-items-nav{
     display: flex;
     justify-content: end;
     margin-right: 10%;
+}
+.navbar-light .navbar-nav .nav-link.active{
+    color: white;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.navbar-light .navbar-nav .nav-link.active:hover {
+    background-color: rgba(254, 124, 54, 0.496);
+    box-shadow: inset 0px 0px 10px rgba(193, 225, 255, 0.411);
+    color: rgb(255, 255, 255);
+}
+
+/* Nav dropdown */
+.nav-dropdown {
+    color: white;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+    background-color: rgba(254, 124, 54, 0.496);
+    box-shadow: inset 0px 0px 10px rgba(193, 225, 255, 0.411);
+    color: rgb(255, 255, 255);
+}
+.dropdown-menu{
+    background: rgb(232,102,9);
+}
+
+/* nav A */
+.a-nav{
+    font-size: calc(0.15rem + 1vw);
+    /* height: 100%; */
+    height: 100px;
+    padding: 10px;
+    
+}
+
+/* Logo Navbar */
+.div-logo-nav{
+    margin-left: 10%;
+}
+
+/* IMAGEN LOGO NAVBAR */
+.img-logo{
+    width: 70%;
+    height: 100px;
+}
+
+
+.div-iconos{
+    width: 140px;  
+    height: 35px;
+}
+.iconos{
+    width: 50px;
+}
+/* ------------------------------------- */
+
+/* INDEX */
+.div-btn-index{
+    
+    margin: auto;
+}
+
+.div-index-row{
+    margin-top: 200px;
+}
+
+.card-index{
+    border:none;
 }
 
 .ronnie_portada{
@@ -44,14 +111,34 @@ nav{
 .div_titulo{
     display: flex;
     justify-content: center;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    background-color: #DC5639;
+    color: white;
     margin-top: 50px;
 }
 h1{
     font-size: 50px;
 }
 
-/* PROVEEDORES */
+/* INICIO */
+.inicio-container{
+    padding: 0%;
+     /* height: 605px; */
+     height: 725px;
+     position: absolute;
+     bottom: 0.5%;
+     z-index: -1;
+}
+.div-imagen{
+    width:100%;
+    height: 100%;
+    margin: 0%;
+}
+.imagen{
+    width: 100%;
+    height: 100%;
+    background-position:center;
+    background-repeat: no-repeat;
+}
 
-/* #tablaProveedores{
-  
-} */
+

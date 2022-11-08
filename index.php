@@ -5,48 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
     <title>Ronnie bar</title>
 </head>
 <body>
     <div class="container mt-5">
-        <div class="row">
-            <!-- primer col -->
-            <div class="col-md-4">
-            
+        <div class="row d-flex justify-content-center div-index-row">
+           
+            <div class="col-md-5">
+                <div class="img-logo-index">
+                    <img src="./imagenes/ronnie-logo.png" alt="Logo" >
+                </div>
+                <h3>Sistema administrativo</h3>
             </div>
-            <!-- segunda col -->
+            <!-- col -->
             <div class="col-md-4">
                 <!-- card -->
-               <div class="card">
-                <div class="card-header">
-                    Iniciar sesión
-                </div>
+               <div class="card card-index">
                 <!-- body de la card -->
-                <div class="card-body">
-    
+                <div class="card-body  text-center shadow-lg p-3  bg-body rounded text-center">
     
                     <!-- form -->
                     <form action="index.php" name="form" class="form-group" method="post">
-                        Usuario:<input type="text" name="usuario" id="usuario" class="form-control"> 
+                        <input type="text" name="usuario" id="usuario" class="form-control my-3 " placeholder="Nombre de usuario"> 
                         </input>
 
-                        Contraseña:<input type="password" name="contrasenia" class="form-control">
+                       <input type="password" name="contrasenia" class="form-control my-3" placeholder="Contraseña" autocomplete="no">
                         </input>
-                       <button type="submit" class="btn btn-primary mt-2" onclick="">Ingresar</button>
 
-                       <!-- Elemento oculto con display -->
-                       <div class="alert alert-danger mt-2" id="alerta-error" style="display:none"></div> 
+                        <!-- Elemento oculto con display -->
+                        <div class="alert alert-danger mt-2" id="alerta-error" style="display:none"></div> 
+                        
+                        <div class="row div-btn-index"> <button type="submit" class="btn btn-primary mt-2 ">Iniciar sesión</button></div>
                     </form>
                     
                 </div>
                
                </div>
             </div>
-            
-            
+              
         </div>
-       </div>
-       <script src="index.js"></script>
+    </div>
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 <?php
@@ -83,7 +82,7 @@ if ($_POST) {
             echo "<script type='text/javascript'>
             const mensajeError = document.querySelector('#alerta-error');
             mensajeError.style.display = 'block';
-            mensajeError.textContent = 'Nombre de usuario mal ingresado';   
+            mensajeError.textContent = 'Usuario mal ingresado';   
             setTimeout(() => {
                 mensajeError.style.display = 'none';
             }, 3000);

@@ -35,18 +35,30 @@
 	}
 
     $validacion = ValidateCUITCUIL($cuit);
-     if ($validacion) {
 
-          $consulta = $conexion -> prepare("INSERT into proveedores(nombre,telefono,cuit,estado) values (:nombre,:telefono,:cuit,1)");
-          $consulta -> bindParam(":nombre",$nombre);
-          $consulta -> bindParam(":telefono",$telefono);
-          $consulta -> bindParam(":cuit",$cuit);
-          $consulta -> execute();
-          header("location:proveedores.php");
+	//Valido que no exista ese proveedores con esa cuit/cuil
+    $consulta = $conexion -> prepare("SELECT cuit from proveedores where cuit = :cuit");
+    $consulta -> bindParam("cuit",$cuit); 
+    $consulta -> execute();
+    $listaConsulta = $consulta -> fetch(PDO::FETCH_LAZY);
+
+	//Si existe el cuit y si no esta repetido se ingresan los datos
+     if ($validacion) {
+		if (!$listaConsulta) {	
+			$consulta = $conexion -> prepare("INSERT into proveedores(nombre,telefono,cuit,estado) values (:nombre,:telefono,:cuit,1)");
+			$consulta -> bindParam(":nombre",$nombre);
+			$consulta -> bindParam(":telefono",$telefono);
+			$consulta -> bindParam(":cuit",$cuit);
+			$consulta -> execute();
+			header("location:proveedores.php");
+		}else{
+			$mensajeError = "Error. Proveedor ya existente.";
+			header("location:proveedores.php?msge=$mensajeError");
+		}
           
      }else{
-          $mensaje = "cuil mal ingresado";
-          header("location:DarDeAlta.php?msg=<?php $mensaje ?>");
+          $mensaje = "Cuit mal ingresado";
+          header("location:DarDeAlta.php?msg=$mensaje");
      }
 
 ?>

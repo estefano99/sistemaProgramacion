@@ -11,10 +11,12 @@
 ?>
    
         <section class="container">
-            <div class="row  d-flex flex-direction-column justify-content-center align-content-center">
+            <div class="row d-flex flex-direction-column justify-content-center align-content-center">
 
-                <div class="col-md-5">
+                <div class="div_titulo mb-5 ">
                     <h1>Modificar tipo de producto</h1>
+                </div>
+                <div class="col-md-5 shadow-lg p-3 mb-5 bg-body rounded text-center">
                     
                     <div class="card">
                         <!-- cabecera card -->
@@ -24,7 +26,7 @@
                         <!-- body card -->
                         <div class="card-body">
                             <!-- Formulario -->
-                            <form action="modificadoTipoDeProducto.php"  method="POST" >
+                            <form action="modificadoTipoDeProducto.php" name="form"  method="POST" >
                                 <!-- id oculto -->
                                 <input type="hidden"  name="id" id="id" value="<?php echo $datos["id_tipodeproducto"]; ?>" class="form-control" aria-describedby="helpId">
                                 <div class="form-group">
@@ -35,12 +37,13 @@
                             </div>
                             <!-- imagen -->
                             <br>
-                            <div class="mensajeConfirmacion"></div>
+                             <!-- Div oculto -->
+                         <div class="alert alert-danger mt-2" class="text-center" id="error_val_tipo_mod" style="display:none"></div>
                         </div>
                         <!-- botones -->
                         <div class="d-flex justify-content-center" role="group" aria-label="">
-                            <button type="submit" name="accion" value="modificar" class="btn btn-success m-2">Modificar</button>
-                            <button type="" name="accion" value="cancelar"  class="btn btn-danger m-2">Cancelar</button>
+                            <button type="button" name="accion" value="modificar" id="btn-mod-tipo" class="btn btn-success m-2">Modificar</button>
+                            <a href="tipoDeProducto.php"><button type="button" name="accion" value="cancelar"  class="btn btn-danger m-2">Cancelar</button></a>
                         </div>
                     </form>
                 </div>
@@ -50,6 +53,22 @@
             
         </div>
     </section>
+    <script>
+        const btnModTipo = document.querySelector("#btn-mod-tipo");
+        const div_oculto = document.querySelector("#error_val_tipo_mod");
+        btnModTipo.addEventListener("click", () =>{
+            const nombre = document.querySelector("#nombre").value;
+            if (nombre == "") {
+                div_oculto.style.display = "block";
+                div_oculto.textContent = "Nombre campo obligatorio"
+                setTimeout(() => {
+                    div_oculto.style.display = "none";
+                }, 3000);
+            }else{
+                document.form.submit();
+            }
+        })
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
     </html>

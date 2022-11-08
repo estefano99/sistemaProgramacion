@@ -15,14 +15,14 @@
 ?>
     <section class="container">
         <div class="row d-flex flex-direction-column justify-content-center align-content-center mb-4">
+            <div class="m-5 div_titulo">
+                <h1>Crear producto</h1>
+            </div>
             <div class="col-md-5">
-                <div class="m-5">
-                    <h1>Crear producto</h1>
-                </div>
                     
-                <div class="card text-center">
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded text-center">
                     <!-- cabecera card -->
-                    <div class="card-header">
+                    <div class="card-header bg-primary text-white font fs-5">
                         Datos del producto
                     </div>
                     <!-- body card -->
@@ -63,7 +63,11 @@
                             <label for="imagen" class="form-label">Imagen: </label>
                             <input type="file" class="form-control" name="imagen" id="imagen" placeholder="Ingresar imagen">
                         </div>
-                        <button type="submit" name="botonAccion" value="insertar" class="btn btn-primary">Crear producto</button>
+                        <div class="alert alert-danger mt-2" class="text-center" id="error_validacion" style="display:none"></div> 
+                        <div>
+                            <button type="button" name="botonAccion" id="btnAltaProductos" value="insertar" class="btn btn-primary">Crear producto</button>
+                            <a href="productos.php"><button type="button" name="botonAccion" value="insertar" class="btn btn-danger" >Cancelar</button></a>
+                        </div>
                 </form>
                 </div>
                 
@@ -74,4 +78,49 @@
     </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
+<script>
+    const btn = document.querySelector("#btnAltaProductos");
+    btn.addEventListener("click", () =>{
+        const nombre = document.querySelector("#nombre").value;
+        const imagen = document.querySelector("#imagen").value;
+        const precio = document.querySelector("#precio").value;
+        const tipo = document.querySelector("#tipoProducto").value;
+        const medida = document.querySelector("#medida").value;
+        const div_error = document.querySelector("#error_validacion");
+        // e.preventDefault();
+        if (nombre == "") {
+            div_error.style.display = "block";
+            div_error.textContent = "Nombre campo obligatorio";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000); 
+        }else if(isNaN(precio) || precio == ""){
+            div_error.style.display = "block";
+            div_error.textContent = "Precio mal ingresado";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000); 
+        }else if(tipo == "Elegir tipo de producto"){
+            div_error.style.display = "block";
+            div_error.textContent = "Tipo de producto campo obligatorio";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000); 
+        }else if(medida == "Elegir medida"){
+            div_error.style.display = "block";
+            div_error.textContent = "Medida campo obligatorio";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000); 
+        }else if(imagen == ""){
+            div_error.style.display = "block";
+            div_error.textContent = "Imagen campo obligatorio";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000); 
+        }else{
+            document.form.submit();
+        }
+    })
+</script>
 </html>

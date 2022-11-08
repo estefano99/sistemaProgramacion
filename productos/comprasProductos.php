@@ -30,10 +30,10 @@
 ?>
     <section class="container">
         <div class="row d-flex flex-direction-column justify-content-center align-content-center mb-4">
-            <div class="col-md-5">
-                <div class="m-5">
-                    <h1>Ingresar stock</h1>
-                </div>
+            <div class="m-5 div_titulo">
+                <h1>Ingresar stock</h1>
+            </div>
+            <div class="col-md-5 shadow-lg p-3 mb-5 bg-body rounded text-center">
                 <div class="card text-center">
                     <!-- cabecera card -->
                     <div class="card-header">
@@ -50,6 +50,9 @@
                             <input type="hidden"  class="form-control"  name="id" id="id" value="<?php echo $productos['id_productos']?>">
                             <label for="nombre" class="form-label">Nombre: </label>
                             <input type="text"  class="form-control"  name="nombre" id="nombre" value="<?php echo $productos['nombre']?>">
+                            <?php
+                            }
+                        ?>
                         </div>
                         <div class="mb-3">
                             <label for="medida" class="form-label">Medida: </label>
@@ -88,10 +91,11 @@
                                 <?php } ?> 
                             </select>
                         </div>
-                        <button type="submit" name="botonAccion" value="insertar" class="btn btn-primary" >Ingresar stock</button>
-                        <?php
-                            }
-                        ?>
+                        <div>
+                            <button type="submit" name="botonAccion" value="insertar" class="btn btn-primary" >Ingresar stock</button>
+                            <a href="productos.php"><button type="button" name="botonAccion" value="insertar" class="btn btn-danger" >Cancelar</button></a>
+                        </div>
+                        
                 </form>
                 </div>
                 
@@ -101,6 +105,7 @@
         </div>
     </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     // Desabilita el campo nombre del producto al cargar el documento
     document.addEventListener("DOMContentLoaded",() =>{

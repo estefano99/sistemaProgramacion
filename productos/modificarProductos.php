@@ -29,8 +29,10 @@
         <section class="container">
             <div class="row d-flex flex-direction-column justify-content-center align-content-center">
 
-                <div class="col-md-5 m-4 text-center">
+                <div class="div_titulo mb-4">
                     <h1>Modificar producto</h1>
+                </div>
+                <div class="col-md-5 m-4 shadow-lg p-3 mb-5 bg-body rounded text-center">
                     
                     <div class="card">
                         <!-- cabecera card -->
@@ -40,14 +42,14 @@
                         <!-- body card -->
                         <div class="card-body">
                             <!-- Formulario -->
-                            <form action="modificadoProducto.php"  method="POST" enctype="multipart/form-data" >
+                            <form action="modificadoProducto.php" name="formM" method="POST" enctype="multipart/form-data" >
                                 <!-- id oculto -->
                                 <input type="hidden" name="id" id="id" value="<?php echo $datos["id_productos"]; ?>" class="form-control" aria-describedby="helpId">
                                 <div class="form-group">
                             <!-- Nombre -->
                             <div class="form-group">
                                 <label for="nombre" class="form-label">Nombre:</label>
-                                <input type="text" required name="nombre" id="nombre" value="<?php echo $datos["nombre"]; ?>" class="form-control" aria-describedby="helpId">
+                                <input type="text"  name="nombre" id="nombre" value="<?php echo $datos["nombre"]; ?>" class="form-control" aria-describedby="helpId">
                             </div>
                             <!-- imagen -->
                             <div class="form-group">
@@ -64,7 +66,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="precio" class="form-label">Precio:</label> <br>                  
-                                <input type="text" required name="precio" id="precio" value="<?php echo $datos["precio"]; ?>" class="form-control" aria-describedby="helpId">
+                                <input type="text"  name="precio" id="precio" value="<?php echo $datos["precio"]; ?>" class="form-control" aria-describedby="helpId">
                             </div>
                             <div class="form-group">
                                 <label for="tipo" class="form-label">Tipo:</label> <br>                  
@@ -82,18 +84,18 @@
                             <label for="imagen" class="form-label">Imagen:</label> <br>
 
                                 <?php if ($datos["imagen"] != "") { ?>
-                                    <img src="../imagenesProductos/<?php echo $datos["imagen"] ;?>" width="100px" alt="">  <br> <br>                       
+                                    <img src="../imagenesProductos/<?php echo $datos["imagen"] ;?>" id="img" width="100px" alt="imagen">  <br> <br>                       
                                 <?php } ?>   
 
                                 <input type="file" name="imagen" id="imagen" class="form-control" placeholder="Ingresar Imagen" aria-describedby="helpId">
-                                <!-- Nombre imagen oculto -->
                             </div>
                             <br>
                         </div>
+                        <div class="alert alert-danger mt-2" class="text-center" id="error_validacion" style="display:none"></div> 
                         <!-- botones -->
                         <div class="d-flex justify-content-center" role="group" aria-label="">
-                            <button type="submit" name="accion" value="modificar" class="btn btn-success m-2">Modificar</button>
-                            <button type="" name="accion" value="cancelar"  class="btn btn-danger m-2">Cancelar</button> 
+                            <button type="button" name="accion" value="modificar" id="btnModificarProductos" class="btn btn-success m-2">Modificar</button>
+                            <a href="productos.php"><button type="button" name="accion" value="cancelar"  class="btn btn-danger m-2">Cancelar</button> </a>
                         </div>
                     </form>
                 </div>
@@ -105,4 +107,49 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
+    <script>
+        const btnM = document.querySelector("#btnModificarProductos");
+        btnM.addEventListener("click", () =>{
+            const nombreM = document.querySelector("#nombre").value;
+            const imagenM = document.querySelector("#img").value;
+            const precioM = document.querySelector("#precio").value;
+            const tipoM = document.querySelector("#tipoProducto").value;
+            const medidaM = document.querySelector("#medida").value;
+            const div_errorM = document.querySelector("#error_validacion");
+            // e.preventDefault();
+            if (nombreM == "") {
+                div_errorM.style.display = "block";
+                div_errorM.textContent = "Nombre campo obligatorio";
+                setTimeout(() => {
+                    div_errorM.style.display = 'none';
+                }, 3000); 
+            }else if(isNaN(precioM) || precioM == ""){
+                div_errorM.style.display = "block";
+                div_errorM.textContent = "Precio mal ingresado";
+                setTimeout(() => {
+                    div_errorM.style.display = 'none';
+                }, 3000); 
+            }else if(tipoM == "Elegir tipo de producto"){
+                div_errorM.style.display = "block";
+                div_errorM.textContent = "Tipo de producto campo obligatorio";
+                setTimeout(() => {
+                    div_errorM.style.display = 'none';
+                }, 3000); 
+            }else if(medidaM == "Elegir medida"){
+                div_errorM.style.display = "block";
+                div_errorM.textContent = "Medida campo obligatorio";
+                setTimeout(() => {
+                    div_error.style.display = 'none';
+                }, 3000); 
+            }else if(imagenM == ""){
+                div_errorM.style.display = "block";
+                div_errorM.textContent = "Imagen campo obligatorio";
+                setTimeout(() => {
+                    div_errorM.style.display = 'none';
+                }, 3000); 
+            }else{
+                document.formM.submit();
+            }
+    })
+    </script>
 </html>

@@ -3,8 +3,8 @@
     include("../config/db.php");
     $estado = 0;
 
-    if (isset($_GET["usr"])) $id = $_GET["usr"];  //Si se envia algo se guarda en la variable id
-
+    (isset($_GET["usr"])) ? $id = $_GET["usr"] : "";  //Si se envia algo se guarda en la variable id
+    
     $consulta = $conexion -> prepare("UPDATE productos set estado = :estado where id_productos = :id");
     $consulta -> bindParam("id",$id);
     $consulta -> bindParam("estado",$estado);  //Baja logica

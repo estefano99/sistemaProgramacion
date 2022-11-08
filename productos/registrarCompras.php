@@ -43,6 +43,6 @@
     $consulta -> bindParam("cantidad",$cantidad);
     $consulta -> execute();
 
-    $compraMensaje = "Se ingresaron los productos con éxito";
+    $compraMensaje = "Se ingresaron los producto con éxito";
     header("Location:productos.php?cmp=$compraMensaje");
 ?>

@@ -4,22 +4,24 @@
     $id = $_POST["id"];
     $nombre = $_POST["nombre"];
 
-    $consulta = $conexion -> prepare("UPDATE tipodeproducto set nombre = :nombre where id_tipodeproducto = :id");
+    $consulta = $conexion -> prepare("SELECT nombre from tipodeproducto where nombre = :nombre and id_tipodeproducto != :id and estado = 1");
     $consulta -> bindParam("nombre",$nombre);
     $consulta -> bindParam("id",$id);
-   
-    $nombreModificado = $nombre;
-    if ($consulta -> execute()) {   //Se ejecuta la consulta
+    $consulta -> execute();
+    $listaConsulta = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+
+    if ($listaConsulta) {
+        $errorEdicion = "Error en la edición. Tipo de producto ya existente.";
+		header("location:tipoDeProducto.php?upde=$errorEdicion");
+    }else {
+        $consulta = $conexion -> prepare("UPDATE tipodeproducto set nombre = :nombre where id_tipodeproducto = :id");
+        $consulta -> bindParam("nombre",$nombre);
+        $consulta -> bindParam("id",$id);
+        $nombreModificado = $nombre;
+        $consulta -> execute();
         header("location:tipoDeProducto.php?upd=$nombreModificado"); //paso la variable para mostrar un mensaje de modificado correctamente
-        
-        include("../template/cabecera.php");
-    }else{
-        echo "
-        <div class='container d-flex justify-content-center'>
-            <div class=' m-5 border border-info d-flex flex-column '>
-                <p>Hubo un error, vuelva a ingresar los datos.</p> <br>
-                <a href='tipoDeProducto.php' class='m-auto'> <button class='btn btn-secondary'>Volver</button> </a>
-            </div>
-        </div>";
     }
+
+        
+        
 ?>
