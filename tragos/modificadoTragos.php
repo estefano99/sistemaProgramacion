@@ -4,6 +4,7 @@
 
      $id = (isset ($_POST["id"])) ? $_POST["id"] : "";
      $nombre = (isset ($_POST["nombre"])) ? $_POST["nombre"] : "";
+     $tipodetrago = (isset($_POST["tipodetrago"])) ? $_POST["tipodetrago"] : "";
      $descripcion = (isset ($_POST["descripcion"])) ? $_POST["descripcion"] : "";
      $precio = (isset ($_POST["precio"])) ? $_POST["precio"] : "";
      $favorito = (isset ($_POST["favorito"])) ? $_POST["favorito"] : "";
@@ -23,8 +24,9 @@
          $mensajeAlta = "Trago ya existente";
          header("location:tragos.php?alt=$mensajeAlta");
      }else {
-         $consulta = $conexion -> prepare("UPDATE tragos set nombre = :nombre , descripcion = :descripcion , precio = :precio , favoritos = :favoritos , estado = :estado where id_tragos = :id");
+         $consulta = $conexion -> prepare("UPDATE tragos set nombre = :nombre ,id_tipodetragosFK = :tipodetrago ,descripcion = :descripcion , precio = :precio , favoritos = :favoritos , estado = :estado where id_tragos = :id");
          $consulta -> bindParam("nombre",$nombre);
+         $consulta -> bindParam("tipodetrago",$tipodetrago);
          $consulta -> bindParam("descripcion",$descripcion);
          $consulta -> bindParam("precio",$precio);
          $consulta -> bindParam("favoritos",$favorito);

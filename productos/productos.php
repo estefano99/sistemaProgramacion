@@ -112,14 +112,14 @@
                     <?php
                         foreach ($listaProductos as $productos) {
                     ?>
-                    <tr>
+                    <tr class="my-auto">
                         <td ><?php echo $productos["nombre"] ?></td>
                         <td><?php echo $productos["medida"] ?></td>
                         <td><?php echo $productos["stock"] ?></td>
                         <td><?php echo $productos["precio"] ?></td>
                         <td><?php echo $productos["tipo"] ?></td>
                         <?php (isset($productos)) ?> 
-                        <td><img src="../imagenesProductos/<?php echo $productos["imagen"];?>" width="100px" alt="imagen"></td>
+                        <td><img src="../imagenesProductos/<?php echo $productos["imagen"];?>" width="50px" alt="imagen"></td>
                         <td >
                             <a href="comprasProductos.php?url=<?php echo $productos["id_productos"] ?>" class="a-iconos"><img src="../imagenes/añadir-carrito.png" alt="eliminar" class="iconos"></a>
                             <a href="descuentoProductos.php?url=<?php echo $productos["id_productos"] ?>" class="w-100 h-100"><img src="../imagenes/eliminar-carrito.png" alt="hola" class="iconos"></a>

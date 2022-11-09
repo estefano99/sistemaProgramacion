@@ -8,10 +8,11 @@
     $favorito = (isset ($_POST["favorito"])) ? $_POST["favorito"] : "";
     $imagen = (isset ($_FILES["imagen"])) ? $_FILES["imagen"]["name"] : "";
     $producto = (isset($_POST["producto"])) ? $_POST["producto"] : "";
-    $medida = (isset($_POST["medida"])) ? $_POST["medida"] : $_POST["medida"];
+    $medida = (isset($_POST["medida"])) ? $_POST["medida"] : "";
+    $tipodetrago = (isset($_POST["tipodetrago"])) ? $_POST["tipodetrago"] : "";
     $length = count($producto);
     $estado = 1;
-   
+
     $consulta = $conexion -> prepare("SELECT nombre from tragos where nombre = :nombre");
     $consulta -> bindParam("nombre",$nombre);
     $consulta -> execute();
@@ -21,8 +22,9 @@
         $mensajeAlta = "Trago ya existente";
         header("location:tragos.php?alt=$mensajeAlta");
     }else {
-        $consulta = $conexion -> prepare("INSERT into tragos(nombre,descripcion,precio,favoritos,imagen,estado) values (:nombre,:descripcion,:precio,:favoritos,:imagen,:estado)");
+        $consulta = $conexion -> prepare("INSERT into tragos(nombre,id_tipodetragosFK,descripcion,precio,favoritos,imagen,estado) values (:nombre,:id_tipodetragosFK,:descripcion,:precio,:favoritos,:imagen,:estado)");
         $consulta -> bindParam("nombre",$nombre);
+        $consulta -> bindParam("id_tipodetragosFK",$tipodetrago);
         $consulta -> bindParam("descripcion",$descripcion);
         $consulta -> bindParam("precio",$precio);
         $consulta -> bindParam("favoritos",$favorito);

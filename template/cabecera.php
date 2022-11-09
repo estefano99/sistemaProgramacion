@@ -42,7 +42,7 @@ if (!isset($_SESSION["nombre"])) {
                         <a class="nav-link active a-nav" href="../tragos/tragos.php">Tragos</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active a-nav" href="../estadisticas/estadisticas.php">Estadisticas</a>
+                        <a class="nav-link active a-nav" href="../ventas/ventas.php">Ventas</a>
                         </li>
                         <!-- Dropdown -->
                         <li class="nav-item dropdown nav-dropdown">
@@ -52,6 +52,9 @@ if (!isset($_SESSION["nombre"])) {
                                 <a class="nav-link active" href="../proveedores/proveedores.php">Proveedores</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link active" href="../estadisticas/estadisticas.php">Estadisticas</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link active" href="../medidas/medidas.php">Medidas</a>
                             </li>
                             <li class="nav-item">
@@ -59,6 +62,9 @@ if (!isset($_SESSION["nombre"])) {
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="../tipoDeProducto/tipoDeProducto.php">Tipo de producto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="../tipoDeTragos/tipoDeTragos.php">Tipo de tragos</a>
                             </li>
                         </ul>
                             </li>

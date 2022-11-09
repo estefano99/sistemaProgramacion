@@ -4,7 +4,7 @@
     include("../template/cabecera.php");
 
     $estado = 1;
-    $consulta = $conexion -> prepare("SELECT id_tragos,nombre,descripcion,precio,imagen,favoritos from tragos where estado = :estado");
+    $consulta = $conexion -> prepare("SELECT id_tragos,tragos.nombre as 'nombre',descripcion,precio,imagen,favoritos,tipodetragos.nombre as 'tipo' from tragos,tipodetragos where tragos.estado = :estado and tragos.id_tipodetragosFK = tipodetragos.id_tipodetragos");
     $consulta -> bindParam("estado",$estado);
     $consulta -> execute();
     $listaTragos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
@@ -53,12 +53,13 @@
                 <thead>
                     <tr>
                         <th class="col-2">Nombre</th>
+                        <th class="col-1">tipo</th>
                         <th class="col-1">Precio</th>
                         <th class="col-2">Descripción</th>
                         <th class="col-2">Medidas</th> 
                         <th class="col-1">Favoritos</th> 
-                        <th class="col-2">Imagen</th> 
-                        <th class="col-2">Acciones</th>
+                        <th class="col-1">Imagen</th> 
+                        <th class="col-1">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,6 +68,7 @@
                     ?>
                     <tr>
                         <td ><?php echo $tragos["nombre"] ?></td>
+                        <td ><?php echo $tragos["tipo"] ?></td>
                         <td><?php echo $tragos["precio"] ?></td>
                         <td><?php echo $tragos["descripcion"] ?></td>
                         <?php
@@ -117,6 +119,7 @@
                     <thead>
                         <tr>
                             <th class="col-2">Nombre</th>
+                            <th class="col-1">tipo</th>
                             <th class="col-1">Precio</th>
                             <th class="col-2">Descripción</th>
                             <th class="col-2">Medidas</th> 
@@ -131,6 +134,7 @@
                         ?>
                         <tr>
                             <td ><?php echo $tragos["nombre"] ?></td>
+                            <td ><?php echo $tragos["tipo"] ?></td>
                             <td><?php echo $tragos["precio"] ?></td>
                             <td><?php echo $tragos["descripcion"] ?></td>
                             <?php
@@ -172,7 +176,7 @@
     btnInactivo.addEventListener("click",() =>{
         <?php 
              $estado = 0;
-             $consulta = $conexion -> prepare("SELECT id_tragos,nombre,descripcion,precio,imagen,favoritos from tragos where estado = :estado");
+             $consulta = $conexion -> prepare("SELECT id_tragos,tragos.nombre as 'nombre',descripcion,precio,imagen,favoritos,tipodetragos.nombre as 'tipo' from tragos,tipodetragos where tragos.estado = :estado and tragos.id_tipodetragosFK = tipodetragos.id_tipodetragos");
              $consulta -> bindParam("estado",$estado);
              $consulta -> execute();
              $listaTragos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
@@ -188,6 +192,7 @@
                     <thead>
                         <tr>
                             <th class="col-2">Nombre</th>
+                            <th class="col-2">Tipo</th>
                             <th class="col-1">Precio</th>
                             <th class="col-2">Descripción</th>
                             <th class="col-2">Medidas</th> 
@@ -202,6 +207,7 @@
                         ?>
                         <tr>
                             <td ><?php echo $tragos["nombre"] ?></td>
+                            <td ><?php echo $tragos["tipo"] ?></td>
                             <td><?php echo $tragos["precio"] ?></td>
                             <td><?php echo $tragos["descripcion"] ?></td>
                             <?php

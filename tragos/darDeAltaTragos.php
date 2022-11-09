@@ -8,6 +8,11 @@
      $consulta -> bindParam("estado",$estado);
      $consulta -> execute();
      $listaProductos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+
+     $consulta = $conexion -> prepare("SELECT * from tipodetragos where estado = :estado order by nombre asc");
+     $consulta -> bindParam("estado",$estado);
+     $consulta -> execute();
+     $listaTipo = $consulta -> fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="container">
         <div class="row d-flex flex-direction-column justify-content-center align-content-center mb-4">
@@ -31,6 +36,16 @@
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre: </label>
                             <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="Nombre" placeholder="Nombre producto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="favorito" class="form-label">Tipo de trago: </label>
+                                <select class="form-select text-center" name="tipodetrago" id="tipodetrago">
+                                    <?php
+                                        foreach ($listaTipo as $tipo) {                                         
+                                    ?>
+                                    <option value="<?php echo $tipo['id_tipodetragos'] ?>"><?php echo $tipo['nombre'] ?></option>
+                                    <?php } ;?>
+                                </select>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripcion: </label>

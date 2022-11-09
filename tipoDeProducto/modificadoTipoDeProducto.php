@@ -20,8 +20,5 @@
         $nombreModificado = $nombre;
         $consulta -> execute();
         header("location:tipoDeProducto.php?upd=$nombreModificado"); //paso la variable para mostrar un mensaje de modificado correctamente
-    }
-
-        
-        
+    }    
 ?>

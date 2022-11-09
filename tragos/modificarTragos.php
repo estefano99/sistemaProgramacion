@@ -4,6 +4,7 @@
     include("../template/cabecera.php");
 
     $id = (isset($_GET["upd"])) ? $_GET["upd"] : "";
+    $estado = 1;
     //Trae los datos del trago.
     $consulta = $conexion -> prepare("SELECT * from tragos where id_tragos = :id");
     $consulta -> bindParam("id",$id);
@@ -20,6 +21,19 @@
     $consulta = $conexion -> prepare("SELECT * from productos group by nombre");
     $consulta -> execute();
     $listaProductos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+ 
+    //Trae los tipos de tragos
+    $consulta = $conexion -> prepare("SELECT tipodetragos.nombre as 'nombre',id_tipodetragos from tipodetragos,tragos where id_tragos = :id and tragos.id_tipodetragosFK = tipodetragos.id_tipodetragos order by nombre asc;");
+    $consulta -> bindParam("id",$id);
+    $consulta -> execute();
+    $tipoUnico = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+
+    //Trae los tipos de tragos y no trae el nombre del tipo de trago que tiene guardado, porque sino se repite
+    $consulta = $conexion -> prepare("SELECT * from tipodetragos where estado = :estado and nombre != :nombre order by nombre asc");
+    $consulta -> bindParam("estado",$estado);
+    $consulta -> bindParam("nombre",$tipoUnico[0]["nombre"]);
+    $consulta -> execute();
+    $listaTipo = $consulta -> fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="container">
         <div class="row d-flex flex-direction-column justify-content-center align-content-center mb-4">
@@ -47,6 +61,17 @@
                             <label for="nombre" class="form-label">Nombre: </label>
                             <input type="hidden" name="id" value="<?php echo $tragos['id_tragos'] ?>">
                             <input type="text" class="form-control" value="<?php echo $tragos["nombre"] ?>" name="nombre" id="nombre" aria-describedby="Nombre" placeholder="Nombre producto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="favorito" class="form-label">Tipo de trago: </label>
+                                <select class="form-select text-center" name="tipodetrago" id="tipodetrago">
+                                    <option value="<?php echo $tipoUnico[0]['id_tipodetragos'] ?>"><?php echo $tipoUnico[0]['nombre'] ?></option>
+                                    <?php
+                                        foreach ($listaTipo as $tipo) {                                         
+                                    ?>
+                                    <option value="<?php echo $tipo['id_tipodetragos'] ?>"><?php echo $tipo['nombre'] ?></option>
+                                    <?php } ;?>
+                                </select>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripcion: </label>

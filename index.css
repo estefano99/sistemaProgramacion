@@ -141,4 +141,29 @@ h1{
     background-repeat: no-repeat;
 }
 
+/* VENTAS */
+
+.div-col-ventas{
+    background-color: #DC5639;
+    /* width: 500px; */
+    height: 300px;
+}
+.div-col-ventas2{
+    background-color: #183153;
+    flex-wrap: wrap;
+}
+.div-grupo-tragos{
+    height: 100px;
+    background-color: aliceblue;
+    border: 2px solid black;
+    flex-wrap: wrap;
+}
+.p-grupo-tragos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    margin: 0;
+}
 
