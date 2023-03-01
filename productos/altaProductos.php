@@ -1,7 +1,6 @@
 <?php
     session_start();
     include("../config/db.php");
-    include("../template/cabecera.php");
 
     $nombre = $_POST["nombre"];
     $tipoProducto = $_POST["tipoProducto"];

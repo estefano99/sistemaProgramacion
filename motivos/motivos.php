@@ -1,19 +1,17 @@
 <?php
-        session_start();
-        include("../config/db.php");
-         
-        //MOSTRAR LISTA DE PROVEEDORES
-        $estado = 1;
-        $consulta = $conexion -> prepare("SELECT * from motivo where estado = :estado order by motivo asc ");
-        $consulta -> bindParam("estado",$estado);
-        $consulta -> execute();
-        $listaMotivos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+    session_start();
+    include("../config/db.php");
         
-         include("../template/cabecera.php");
+    //MOSTRAR LISTA DE PROVEEDORES
+    $estado = 1;
+    $consulta = $conexion -> prepare("SELECT * from motivo where estado = :estado order by motivo asc ");
+    $consulta -> bindParam("estado",$estado);
+    $consulta -> execute();
+    $listaMotivos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+    
+    include("../template/cabecera.php");
 ?>
-
     <!-- Cierre navbar -->
-
     <section class="container-fluid">
         <div class="div_titulo my-3">
             <h1>Motivos descuento de stock</h1>
@@ -137,8 +135,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
+    <?php include("../template/footer.php") ?>
 <script>
         const btnMotivos = document.querySelector("#btn-motivos");
         btnMotivos.addEventListener("click", () =>{
@@ -260,4 +257,3 @@
         }
     }
     </script>
-</html>

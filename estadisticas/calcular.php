@@ -126,7 +126,7 @@
                         <p>hasta: <?php echo $fechaOrdenada2 ?></p>
                     </li>
                 </ul>
-            <table class=" table-responsive table-striped text-center">
+            <table class="table table-responsive table-striped text-center">
                 <thead class="table-dark">
                         <tr>
                         <th>Motivos</th>

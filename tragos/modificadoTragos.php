@@ -10,8 +10,11 @@
      $favorito = (isset ($_POST["favorito"])) ? $_POST["favorito"] : "";
      $imagen = (isset ($_FILES["imagen"]["name"])) ? $_FILES["imagen"]["name"] : "";
      $producto = (isset($_POST["producto"])) ? $_POST["producto"] : "";
-     $medida = (isset($_POST["medida"])) ? $_POST["medida"] : $_POST["medida"];
-     $length = count($producto);
+     $medida = (isset($_POST["medida"])) ? $_POST["medida"] : "";
+     
+     if ($producto) {
+         $length = count($producto);
+     }
      $estado = 1;
     
      $consulta = $conexion -> prepare("SELECT * from tragos where nombre = :nombre and id_tragos != :id");
@@ -46,16 +49,17 @@
           $consultaImagen = $conexion -> prepare("SELECT imagen FROM tragos WHERE id_tragos = :id"); //pregunto cual es el id con esa imagen
           $consultaImagen -> bindParam(":id",$id);
           $consultaImagen -> execute();
-          $datos = $consultaImagen -> fetch(PDO::FETCH_LAZY);  //recupero el ID
-  
+          $datos = $consultaImagen -> fetch(PDO::FETCH_LAZY);  //recupero la imagen
           if (isset($datos["imagen"]) && ($datos["imagen"] != "imagen.jpg")) {  //si es que existe esa imagen y es diferente al valor imagen.jpg que equivale a ninguna imagen
   
               if (file_exists("../imagenesTragos/".$datos["imagen"])) {  //Busco si es que existe en la carpeta imagenes
                   unlink("../imagenesTragos/".$datos["imagen"]);   //la borro
               }
           }
-         $consulta -> bindParam("imagen",$nombreArchivo);
-         $consulta -> execute();
+         $consultaImagen = $conexion -> prepare("UPDATE tragos SET imagen = :imagen WHERE id_tragos = :id");
+         $consultaImagen -> bindParam("imagen",$nombreArchivo);
+         $consultaImagen -> bindParam(":id",$id);
+         $consultaImagen -> execute();
          }
 
          //Trae el id del producto para saber que producto actualizar, porque solo el ID del TRAGO me actualiza todo con ese id.
@@ -63,7 +67,6 @@
           $consulta -> bindParam("id",$id);
           $consulta -> execute();
           $listaTragos = $consulta -> fetchAll(PDO::FETCH_ASSOC);
-          print_r($listaTragos);
          
          for ($i=0; $i < $length; $i++) {
              $producto[$i] = intval($producto[$i]); 

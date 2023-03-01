@@ -91,8 +91,9 @@
                                 <?php } ?> 
                             </select>
                         </div>
+                        <div class="alert alert-danger mt-2" class="text-center" id="error_validacion" style="display:none"></div> 
                         <div>
-                            <button type="submit" name="botonAccion" value="insertar" class="btn btn-primary" >Ingresar stock</button>
+                            <button type="button" name="botonAccion" id="btn-compras" value="insertar" class="btn btn-primary" >Ingresar stock</button>
                             <a href="productos.php"><button type="button" name="botonAccion" value="insertar" class="btn btn-danger" >Cancelar</button></a>
                         </div>
                         
@@ -105,8 +106,10 @@
         </div>
     </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    const div_error = document.querySelector("#error_validacion");
+    const btn_compras = document.querySelector("#btn-compras")
+
     // Desabilita el campo nombre del producto al cargar el documento
     document.addEventListener("DOMContentLoaded",() =>{
         const nombre = document.querySelector("#nombre");
@@ -114,6 +117,36 @@
         nombre.disabled = true
         medida.disabled = true
     })
+    
+    btn_compras.addEventListener("click", (e) => {
+        e.preventDefault();
+        const cantidad = document.querySelector("#cantidad").value;
+        const precioUnidad = document.querySelector("#precioUnidad").value;
+        const proveedor = document.querySelector("#proveedor").value;
+        if (cantidad < 0 || cantidad == 0 || cantidad == "" || isNaN(cantidad)) {
+            div_error.style.display = "block";
+            div_error.textContent = "Cantidad mal ingresada";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000);
+        }else if(precioUnidad < 0 || precioUnidad == "" || isNaN(precioUnidad)){
+            div_error.style.display = "block";
+            div_error.textContent = "Precio mal ingresado";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000);
+        }else if(proveedor == ""){
+            div_error.style.display = "block";
+            div_error.textContent = "Proveedor obligatorio";
+            setTimeout(() => {
+                div_error.style.display = 'none';
+            }, 3000);
+        }else{
+            document.form.submit();
+        }
+    })
+
+
 
 </script>
 </body>

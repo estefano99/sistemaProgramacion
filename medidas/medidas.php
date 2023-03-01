@@ -108,7 +108,7 @@
                             <input type="text" class="form-control" name="medida" id="medida" aria-describedby="Nombre" placeholder="Ingresar medida">
                         </div>
                         <div class="border border-danger w-75 mb-2 mx-auto text-center">
-                                <small class="text-danger ">Formas de ingresar: 1,5 lt - 2 lt - 250 mlt</small>
+                                <small class="text-danger ">Formas de ingresar: 1,5 lt - 2 lt - 250 mlt 2,250 lt</small>
                         </div>
                                 <!-- Div oculto -->
                             <div class="alert alert-danger mt-2 text-danger" class="text-center" id="error_validacion_medidas" style="display:none"></div>
@@ -119,7 +119,7 @@
             </div>
         </div>
     </div>
-
+    <?php include("../template/footer.php") ?>
     <script>
         const btnAlta = document.querySelector("#btn-alta");
         const div_error = document.querySelector("#error_validacion_medidas");
@@ -338,4 +338,3 @@
         }
     }
     </script>
-<?php include("../template/footer.php") ?>

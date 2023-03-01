@@ -123,7 +123,7 @@
                 setTimeout(() => {
                     div_errorM.style.display = 'none';
                 }, 3000); 
-            }else if(isNaN(precioM) || precioM == ""){
+            }else if(isNaN(precioM) || precioM == "" || precioM < 0){
                 div_errorM.style.display = "block";
                 div_errorM.textContent = "Precio mal ingresado";
                 setTimeout(() => {

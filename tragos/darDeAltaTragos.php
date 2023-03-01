@@ -75,7 +75,7 @@
                     <div class="row"  id="div_padre_tragos_medidas">
                         <div class="row"> 
                             <div class="col-5 contador_divs">
-                                <label for="producto" class="form-label">Bebida: </label>
+                                <label for="producto" class="form-label">Productos: </label>
                                 <select class="form-select text-center" name="producto[]" id="producto">
                                     <?php  foreach ($listaProductos as $productos) { ?>
                                         <option value="<?php echo $productos["id_productos"]?>"><?php echo $productos["nombre"] ?></option>
@@ -83,7 +83,7 @@
                                     </select>
                                 </div>
                                 <div class="col-5">
-                                    <label for="medida" class="form-label">Medida o onzas: </label>
+                                    <label for="medida" class="form-label">Medida u onzas: </label>
                                     <input type="text" class="form-control medida" name="medida[]" id="medida" placeholder="Ingresar medida">
                                 </div>
                         </div>
@@ -99,7 +99,7 @@
                 <!-- Botones por fuera de los dos article -->
                 <div class="row">
                     <!-- div oculto -->
-                  <div class="alert alert-danger mt-2 w-50 mx-auto" class="text-center" id="error_div" style="display:none"></div> 
+                  <div class="alert alert-danger mt-2 w-50 mx-auto text-center" id="error_div" style="display:none"></div> 
                     <div class="d-flex justify-content-center w-100">
                         <button type="button" name="botonAccion" id="btnAltaProductos" value="insertar" class="btn btn-primary w-25">Crear trago</button>
                         <a href="tragos.php" class="w-25"><button type="button" name="botonAccion" value="insertar" class="btn btn-danger w-100" >Cancelar</button></a>
@@ -123,7 +123,7 @@
                 const div_creado = document.createElement("div");
                 div_creado.classList.add("row");
                 div_creado.innerHTML = `<div class="col-5 contador_divs">
-                <label for="producto" class="form-label">Bebida: </label>
+                <label for="producto" class="form-label">Productos: </label>
                 <select class="form-select text-center" name='producto[]' id="producto">
                 <?php  foreach ($listaProductos as $productos) { ?>
                     <option value="<?php echo $productos["id_productos"] ?>"><?php echo $productos["nombre"] ?></option>
@@ -131,7 +131,7 @@
                     </select>
                     </div>
                     <div class="col-5 ">
-                    <label for="medida" class="form-label">Medida: </label>
+                    <label for="medida" class="form-label">Medida u onzas: </label>
                     <input type="text" class="form-control medida" name="medida[]" id="medida" placeholder="Ingresar medida">
                     </div>`
                     
@@ -185,14 +185,13 @@
                 setTimeout(() => {
                     div_oculto.style.display = 'none';
                 }, 3000);
+            }else if(imagen == ""){
+                div_oculto.style.display = "block";
+                div_oculto.textContent = "Imagen obligatorio"
+                setTimeout(() => {
+                    div_oculto.style.display = 'none';
+                }, 3000);
             }
-            // else if(imagen == ""){
-            //     div_oculto.style.display = "block";
-            //     div_oculto.textContent = "Imagen obligatorio"
-            //     setTimeout(() => {
-            //         div_oculto.style.display = 'none';
-            //     }, 3000);
-            // }
             else if(bandera){
                 div_oculto.style.display = "block";
                 div_oculto.textContent = "Medida campos obligatorios"

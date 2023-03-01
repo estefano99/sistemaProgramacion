@@ -7,7 +7,7 @@
 ?>
 <section class="container">
     <div class="d-flex justify-content-center div_titulo">
-        <h1>Calcular estadísticas</h1>
+        <h1>Calcular estadísticas productos</h1>
     </div>
     <div class="row d-flex flex-direction-column justify-content-center align-content-center mt-5">
         <div class="col-5 ">
@@ -16,7 +16,7 @@
             <!-- card -->
             <div class="card text-center">
                 <!-- card header -->
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-dark text-white">
                     Datos fechas
                 </div>
                 <!-- card body -->
@@ -35,6 +35,7 @@
         </div>
     </div>
 </section>
+<?php include("../template/footer.php") ?>
 <script>
     const fechas = document.querySelector("#fechas");
     const divPadre = document.createElement("div");
@@ -206,8 +207,5 @@
     while(divPadre.firstChild){
         divPadre.removeChild(divPadre.firstChild) 
     }
-}
-
-    
+} 
 </script>
-<?php include("../template/footer.php") ?>

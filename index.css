@@ -1,3 +1,8 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 /* NAVBAR */
 nav{
     background-color:rgb(255,84,34);
@@ -15,7 +20,6 @@ a{
 }
 .navbar-light .navbar-nav .nav-link.active{
     color: white;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,7 +127,6 @@ h1{
 /* INICIO */
 .inicio-container{
     padding: 0%;
-     /* height: 605px; */
      height: 725px;
      position: absolute;
      bottom: 0.5%;
@@ -143,27 +146,269 @@ h1{
 
 /* VENTAS */
 
+.section-ventas{
+    background-image: url("./imagenes/fondo_ventas.jpeg");
+    background-repeat: no-repeat;
+    background-size : cover;
+    min-height : 100vh;
+    padding: 0;
+    background-color: black;
+}
+
+.article{
+    margin: 0;
+}
+
 .div-col-ventas{
-    background-color: #DC5639;
-    /* width: 500px; */
-    height: 300px;
+    min-height: 300px;
 }
 .div-col-ventas2{
-    background-color: #183153;
+    max-height: 700px;
+    min-height: 500px;
     flex-wrap: wrap;
+    padding: 0;
 }
+
+.divTragos {
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+}
+
 .div-grupo-tragos{
-    height: 100px;
-    background-color: aliceblue;
-    border: 2px solid black;
+    border: 1px solid white;
     flex-wrap: wrap;
+    font-size: 2rem;
 }
-.p-grupo-tragos{
+/* Row que cotiene las dos columnas */
+.div_row_tragos{
+    background-color: #140f07;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.letras-medidas{
+    font-size: calc(0.15rem + 1vw);
+}
+
+#rowTragos{
+    height: 100%;
+}
+
+.favoritos{
+    height: 100%;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    border: 2px solid white;
+    flex-wrap: wrap;
+    color: white;
+    font-size: 2rem;
+}
+
+#formFavoritos{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-ventas{
+    border: none;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     height: 100%;
     margin: 0;
+    background-color: transparent;
+    color: white;
 }
+
+.btnAgregarTrago {
+    width: 70%;
+    height: 45px;
+    margin: 10px 0 5px 0;
+    transition: all .3s;
+}
+
+.btnRegresar{
+    background-color: #DC5639;
+    color: #f8f8ff;
+    border: 1px solid #f8f8ff;
+    width: 70%;
+    height: 45px;
+    margin: 10px 0 5px 0;
+    transition: all .3s;
+}
+
+.btnRegresar:hover{
+    transition: all .3s;
+    background-color: #ae2304;
+}
+
+.enabled{
+    border: 1px solid #f8f8ff;
+    background-color: #f8f8ff36;
+    color: #f8f8ff;
+}
+
+.disabled{
+    border: 1px solid #f22446ad;
+    background-color: #e8496475;
+    color: #f8f8ff;
+}
+
+.enabled:hover {
+    background-color: #f8f8ff55;
+}
+
+.btn-letra{
+    color: white;
+}
+.form{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tr_tabla_tragos{
+    color: white;
+}
+
+.td-input{
+    width: 20%;
+}
+.input-tragos{
+    background:transparent;
+    border:none;
+    outline:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+p{
+    margin: 5px 0 5px 0;
+    padding: 0;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.td-botones{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.form_lista_tragos{
+    width: 100%;
+    height: 100%;
+}
+
+.row_ventas{
+    width: 100%;
+    margin-left: 0;
+}
+
+/* Estadisticas tragos */
+
+.section-grafico{
+    min-height: 500px;
+}
+
+.article-grafico{
+    display: flex;
+    height: 100%;
+    margin-top: 2rem;
+}
+
+.article-grafico-2{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    margin-top: 2rem;
+}
+
+.div-grafico{
+    width: 100%;
+    height: 100%;
+    margin-right: 2rem;
+    margin-top: 2rem;
+}
+
+.div-grafico-2{
+    margin-top: 2rem;
+    width: 100%;
+    height: 100%;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.canvas{
+    height:500px !important;
+    /* width: 100% !important; */
+}
+.canvas-2{
+    height:304px !important;
+    width: 608px !important;
+}
+
+
+/* FOOTER */
+
+.div-footer-container{
+    height: 50px;
+    background-color: #140f07;
+    margin-top: auto;
+}
+
+.div-footer-hijo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+}
+
+.p-footer{
+    font-size: calc(0.15rem + 1vw);
+}
+
+@media (max-width: 500px) {
+    .favoritos{
+        height: 20%;
+    }
+    .div-grupo-tragos{
+        min-height: 20%;
+    }
+    .div-total{
+        padding: 10px;
+    }
+    .letras-medidas{
+        font-size: large;
+    }
+    .div-footer-container{
+        display: none;
+    }
+    .nav-link{
+        font-size: large ;
+    }
+    .div-col-ventas{
+        margin-top: 50px;
+    }
+    .text-dark{
+        margin-bottom: 50px;
+    }
+  }
 

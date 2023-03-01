@@ -94,7 +94,7 @@
             setTimeout(() => {
                 div_error.style.display = 'none';
             }, 3000); 
-        }else if(isNaN(precio) || precio == ""){
+        }else if(isNaN(precio) || precio == "" || precio < 0){
             div_error.style.display = "block";
             div_error.textContent = "Precio mal ingresado";
             setTimeout(() => {

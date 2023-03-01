@@ -1,7 +1,6 @@
 <?php
     session_start();
     include("../config/db.php");
-    include("../template/cabecera.php");
     $id = $_POST["id"];
     $cantidad = $_POST["cantidad"];
     $precioUnidad = $_POST["precioUnidad"];
@@ -43,6 +42,6 @@
     $consulta -> bindParam("cantidad",$cantidad);
     $consulta -> execute();
 
-    $compraMensaje = "Se ingresaron los producto con éxito";
+    $compraMensaje = "Productos añadidos";
     header("Location:productos.php?cmp=$compraMensaje");
 ?>

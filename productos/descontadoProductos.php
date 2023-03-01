@@ -28,7 +28,7 @@
         $consulta -> bindParam("id_productos",$id_productos);
         $consulta -> execute();
         
-        echo json_encode('Descuento de stock registado');
+        echo json_encode('Descuento de stock registrado');
     }else {
         echo json_encode($cantidadStock);
     }

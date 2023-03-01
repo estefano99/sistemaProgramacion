@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="shortcut icon" href="./imagenes/icons/favicon.ico">
     <title>Ronnie bar</title>
 </head>
 <body>
@@ -16,7 +18,7 @@
                 <div class="img-logo-index">
                     <img src="./imagenes/ronnie-logo.png" alt="Logo" >
                 </div>
-                <h3>Sistema administrativo</h3>
+                <h3 class="text-dark">Sistema administrativo</h3>
             </div>
             <!-- col -->
             <div class="col-md-4">
@@ -46,6 +48,7 @@
               
         </div>
     </div>
+    <script src="./validarServiceWorker.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 <?php
@@ -54,21 +57,17 @@ if ($_POST) {
     include("config/db.php");
     $usuario = $_POST["usuario"];
     $contrasenia = $_POST["contrasenia"];
-    $consulta = $conexion ->prepare("SELECT * FROM usuarios WHERE nombre = :nombre");
+    $consulta = $conexion ->prepare("SELECT * FROM usuarios WHERE nombre = :nombre and contrasenia = :contrasenia");
     $consulta -> bindParam(":nombre", $usuario);
+    $consulta -> bindParam(":contrasenia", $contrasenia);
     $consulta -> execute();
     $existe = $consulta -> fetch(PDO::FETCH_ASSOC);
+    
     if ($existe) {
-        
-        $consulta = $conexion -> prepare("SELECT * FROM usuarios WHERE contrasenia = :contrasenia");
-        $consulta -> bindParam(":contrasenia", $contrasenia);
-        $consulta -> execute();
-        $existe = $consulta -> fetch(PDO::FETCH_LAZY);
-        
-        if ($existe) {
-                $_SESSION["nombre"] = $existe["nombre"];
-                header("location:./inicio/inicio.php");
-            }else {
+        $_SESSION["nombre"] = $existe["nombre"];
+        $_SESSION["tipodeusuarios"] = $existe["tipodeusuarios"];
+        header("location:./inicio/inicio.php");
+        }else {
             echo "<script type='text/javascript'>
                 const mensajeError = document.querySelector('#alerta-error');
                 mensajeError.style.display = 'block';
@@ -77,18 +76,7 @@ if ($_POST) {
                 mensajeError.style.display = 'none';
                 }, 3000);          
             </script>";
-            }
-        }else {
-            echo "<script type='text/javascript'>
-            const mensajeError = document.querySelector('#alerta-error');
-            mensajeError.style.display = 'block';
-            mensajeError.textContent = 'Usuario mal ingresado';   
-            setTimeout(() => {
-                mensajeError.style.display = 'none';
-            }, 3000);
-            </script>";
         }
-    
     }
 ?>
 </html>

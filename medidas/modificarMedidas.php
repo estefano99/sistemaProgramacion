@@ -36,7 +36,7 @@
                                 <input type="text" required name="medida" id="medida" value="<?php echo $datos["medida"]; ?>" class="form-control" aria-describedby="helpId">
                             </div>
                             <div class="border border-danger w-75 my-4 mx-auto text-center">
-                                <small class="text-danger ">Formas de ingresar: 1,5 lt - 2 lt - 250 mlt</small>
+                                <small class="text-danger ">Formas de ingresar: 1,5 lt - 2 lt - 250 mlt 2,250 lt</small>
                         </div>
                         </div>
                          <!-- Div oculto -->

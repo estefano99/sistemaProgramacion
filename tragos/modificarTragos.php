@@ -221,7 +221,7 @@
                 setTimeout(() => {
                     div_oculto.style.display = 'none';
                 }, 3000);
-            }else if( precio < 0 || isNaN(precio) || precio == "" ){
+            }else if( precio < 0 || isNaN(precio) || precio == "" || precio == 0){
                 div_oculto.style.display = "block";
                 div_oculto.textContent = "Precio mal ingresado"
                 setTimeout(() => {

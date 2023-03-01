@@ -260,6 +260,10 @@
             div_padre.removeChild(div_padre.firstChild) 
         }
     }
+
+    
+
+
 </script>
     
 <?php include("../template/footer.php") ?>

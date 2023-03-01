@@ -107,14 +107,14 @@
         const cantidad = document.querySelector("#cantidad").value;
         const motivo = document.querySelector("#motivo").value;
         const data = new FormData(form);
-        if (cantidad == "" || isNaN(cantidad) ) {
-                div_respuesta.innerHTML =  `<div class="alert alert-success mt-2">Cantidad mal ingresada</div>`
+        if (cantidad == "" || isNaN(cantidad) || cantidad < 0 || cantidad == 0) {
+                div_respuesta.innerHTML =  `<div class="alert alert-danger mt-2">Cantidad mal ingresada</div>`
                 div_respuesta.style.display = "block"
                 setTimeout(() => {
                     div_respuesta.style.display = "none"
                 }, 2000);
         }else if(motivo == ""){
-                div_respuesta.innerHTML =  `<div class="alert alert-success mt-2">Debe ingresar un motivo</div>`
+                div_respuesta.innerHTML =  `<div class="alert alert-danger mt-2">Debe ingresar un motivo</div>`
                 div_respuesta.style.display = "block"
                 setTimeout(() => {
                     div_respuesta.style.display = "none"
@@ -125,17 +125,14 @@
                 body:data
             }).then(res => res.json())
             .then(data => {
-                if (data == 'Descuento de stock registado') {
-                    div_respuesta.innerHTML = "";
+                if (data == 'Descuento de stock registrado') {
                     div_respuesta.innerHTML =  `<div class="alert alert-success mt-2">Desuento de stock registrado</div>`
                     div_respuesta.style.display = "block"
                     setTimeout(() => {
                         window.location.href= "productos.php";
                     }, 2000);
                 }else{
-                    div_respuesta.innerHTML = "";
-                    div_respuesta.classList.add("alert", "alert-danger", "my-3")
-                    div_respuesta.textContent = ` Stock insfucieinte: ${data}`
+                    div_respuesta.innerHTML =  `<div class="alert alert-danger mt-2">Stock insuficiente: ${data}</div>`
                     div_respuesta.style.display = "block"
                     setTimeout(() => {
                         div_respuesta.style.display = "none";
