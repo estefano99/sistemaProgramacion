@@ -35,7 +35,7 @@
                         <!-- Formulario -->
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre: </label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="Nombre" placeholder="Nombre producto">
+                            <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="Nombre" placeholder="Nombre del trago">
                         </div>
                         <div class="mb-3">
                             <label for="favorito" class="form-label">Tipo de trago: </label>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripcion: </label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion" aria-describedby="descripcion" placeholder="descripcion">
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" aria-describedby="descripcion" placeholder="Descripción">
                         </div>
                         <div class="mb-3">
                             <label for="precio" class="form-label">Precio: </label>

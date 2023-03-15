@@ -37,8 +37,8 @@
     $validacion = ValidateCUITCUIL($cuit);
 
 	//Valido que no exista ese proveedores con esa cuit/cuil
-    $consulta = $conexion -> prepare("SELECT cuit from proveedores where cuit = :cuit");
-    $consulta -> bindParam("cuit",$cuit); 
+    $consulta = $conexion -> prepare("SELECT nombre from proveedores where nombre = :nombre");
+    $consulta -> bindParam("nombre",$nombre); 
     $consulta -> execute();
     $listaConsulta = $consulta -> fetch(PDO::FETCH_LAZY);
 

@@ -34,7 +34,7 @@
        
         <!-- ROW TABLA -->
         <div class="row tabla">
-            <div class="col" id="div_contenedor_tabla">>
+            <div class="col" id="div_contenedor_tabla">
                 <table class="table table-responsive table-bordered table-striped my-3 text-center  mx-auto" style="width:60%"  id="tablaProveedores">  <!--Tiene margen-->
               
                 <!-- Mensaje proveedor existente alta -->

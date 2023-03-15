@@ -104,7 +104,6 @@
                     <!-- Esta dentro del row -->
                     <div class="d-flex justify-content-evenly align-items-center mb-2">
                         <button type="submit" class="btn btn-primary" id="btnConfirmarVenta"> Confirmar venta</button>
-                        <button type="button" class="btn btn-danger" id="btnEliminarTrago"> Eliminar Trago</button>
                     </div>
                 </form>
             </div>

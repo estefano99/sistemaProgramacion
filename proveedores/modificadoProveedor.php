@@ -22,7 +22,7 @@
         $consulta -> bindParam("nombre",$nombre);
         $consulta -> bindParam("telefono",$telefono);
         $consulta -> bindParam("id",$id);
-        $nombreModificado = $nombre . "Editado correctamente";
+        $nombreModificado = $nombre . " editado correctamente";
         $consulta -> execute();
         header("location:proveedores.php?upd=$nombreModificado"); //paso la variable para mostrar un mensaje de modificado correctamente
             

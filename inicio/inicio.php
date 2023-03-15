@@ -2,91 +2,24 @@
 session_start();
 include("../config/db.php"); 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="../node_modules/moment/moment.js"></script>
-    <script src="https://kit.fontawesome.com/4af9d744f8.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="../index.css">
-    <link rel="shortcut icon" href="../imagenes/icons/favicon.ico">
-    <title>Ronnie Bar</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar">
-    <div class="container-fluid">
-       
-            <!-- LOGO -->
-            <div class="div-logo-nav"> 
-                <a class="navbar-brand a-img-logo" href="../inicio/inicio.php"><img src="../imagenes/ronnie-logo.png" class="img-logo" alt="Logo"></a>
-            </div>
+<?php include("../template/cabecera.php") ?> 
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="container-fluid p-0">
 
-            <div class="div-items-nav collapse navbar-collapse" id="navbarNav">
-                <!-- ITEMS-->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                        <a class="nav-link active a-nav" aria-current="page" href="../inicio/inicio.php">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active a-nav" aria-current="page" href="../productos/productos.php">Productos</a>
-                        </li>                       
-                        <li class="nav-item">
-                        <a class="nav-link active a-nav" href="../tragos/tragos.php">Tragos</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active a-nav" href="../ventas/ventas.php">Ventas</a>
-                        </li>
-                        <!-- Dropdown -->
-                        <li class="nav-item dropdown nav-dropdown">
-                        <a class="nav-link dropdown-toggle a-nav " data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Abrir</a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../proveedores/proveedores.php">Proveedores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../estadisticas/estadisticas.php">Estadisticas P</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../estadisticas/estadisticasTragos.php">Estadisticas T</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../medidas/medidas.php">Medidas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../motivos/motivos.php">Motivos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../tipoDeProducto/tipoDeProducto.php">Tipo de productos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="../tipoDeTragos/tipoDeTragos.php">Tipo de tragos</a>
-                            </li>
-                        </ul>
-                            </li>
-                        <li class="nav-item">
-                        <a class="nav-link active a-nav"  href="../cerrarSesion.php">Cerrar sesión</a>
-                        </li>
-                        
-                        
-                    </ul>
-                
+        <div class="row m-0 img-pc">
+            <div class="col-12 p-0 ">
+            <img src="../imagenes/inicio_ronnie2.jpg" class="img-fluid img-inicio" alt="Mi imagen">
             </div>
-            
-    </nav>
-        <div class="container-fluid inicio-container">
-                <div class="div-imagen">
-                    <img src="../imagenes/inicio_ronnie.jpg" class="imagen" alt="">
-                </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </body>
-</html>
+
+        <div class="row img-celular">
+            <img src="../imagenes/inicio_celular.jpg" class="img-fluid img-inicio" alt="Mi imagen">
+            <div class="col-12 p-0 ">
+            </div>
+        </div>
+
+    </div>
+    <script src="./inicio.js"></script>
+<?php include("../template/footer.php") ?> 
+
 

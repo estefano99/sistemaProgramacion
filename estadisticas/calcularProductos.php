@@ -2,32 +2,47 @@
     session_start();
     include("../config/db.php"); 
     include("../template/cabecera.php");
+
     $fecha_desde = (isset($_POST["fecha_desde"])) ? $_POST["fecha_desde"] : ""; 
     $fecha_hasta = (isset($_POST["fecha_hasta"])) ? $_POST["fecha_hasta"] : "";
 
-    if ($fecha_desde && $fecha_hasta) { //Trae el nombre y la cantidad de los tragos vendidos
-        
-        $precios = []; //Guardo el precio multiplicado por cantidad de cada trago.
-        
-        $consulta = $conexion -> prepare("SELECT (tragos.nombre) as 'nombre',sum((precio_venta_tragos * cantidad))  as 'total',sum(cantidad) as 'cantidad' from tragos,tragos_ventas,ventas WHERE ventas.id_ventas = tragos_ventas.id_ventasFK AND tragos.id_tragos = tragos_ventas.id_tragosFK AND ventas.fecha BETWEEN :fecha_desde and :fecha_hasta GROUP BY tragos.nombre;");
+
+    if ($fecha_desde && $fecha_hasta) {
+
+        $cantidadTotal = 0;  //Ingresos mercaderia
+        $cantidadTotal2 = 0; //Descuento mercaderia
+
+        //! Trae el stock ingresado ---------------------------------------
+        $consulta = $conexion -> prepare("SELECT nombre, sum(cantidad) as 'cantidad', medida from productos, prod_comp, compras,medida where id_medidaFK = id_medida and id_comprasFK = id_compras and id_productosFK = id_productos and fecha BETWEEN :fecha_desde and :fecha_hasta group by nombre, medida");
         
         $consulta -> bindParam("fecha_desde",$fecha_desde);
         $consulta -> bindParam("fecha_hasta",$fecha_hasta);
         $consulta -> execute();
-        $listaTotal = $consulta -> fetchAll(PDO::FETCH_ASSOC);
-    
-        for ($i=0; $i < count($listaTotal) ; $i++) { 
-            $precios[$i] = $listaTotal[$i]["total"];
+        $listaCompras = $consulta -> fetchAll(PDO::FETCH_ASSOC);
+
+        //Cuenta el total de ingresos
+        for ($i=0; $i < count($listaCompras); $i++) { 
+            $cantidadTotal += $listaCompras[$i]["cantidad"];
         }
 
-        $dineroAcumulado = 0; //Contiene el dinero total acumulado;
+        //! Trae el stock vendido ---------------------------------------
+        $consulta = $conexion -> prepare("SELECT nombre, sum(cantidad) as 'cantidad', medida from productos, reduccion,medida where id_medidaFK = id_medida and id_productosFK = id_productos and fecha BETWEEN :fecha_desde and :fecha_hasta group by nombre, medida");
+        
+        $consulta -> bindParam("fecha_desde",$fecha_desde);
+        $consulta -> bindParam("fecha_hasta",$fecha_hasta);
+        $consulta -> execute();
+        $listaDescuento = $consulta -> fetchAll(PDO::FETCH_ASSOC);
 
-        for ($i=0; $i < count($precios); $i++) { 
-            $dineroAcumulado += $precios[$i];
+        //Cuenta el total de ingresos
+        for ($i=0; $i < count($listaDescuento); $i++) { 
+            $cantidadTotal2 += $listaDescuento[$i]["cantidad"];
         }
-        ?>
+    }
+?>
 
-    <section class="container-fluid section-grafico">
+<!-- //! --------------------------- HTML -------------------------------- -->
+
+    <section class="container-fluid ">
         <article class="article-grafico" id="article-contenedor-graficos">
             <div class="div-grafico">
                 <canvas id="myChart" class="canvas-llamar"></canvas>
@@ -37,17 +52,20 @@
             </div>
         </article>
         <div class="my-3">
-            <p><strong><u>Total ganancias: $<?php echo $dineroAcumulado ?></u></strong></p>
-            <a href="estadisticasTragos.php"><button class="btn btn-dark mt-4">Regresar</button></a>
+            <p><strong><u>Total stock ingresado </u>: <?php echo $cantidadTotal ?></strong></p>
+            <p><strong><u>Total stock vendido </u>: <?php echo $cantidadTotal2 ?></strong></p>
+            <a href="estadisticas.php"><button class="btn btn-dark mt-4">Regresar</button></a>
             <br>
             <button type="button" id="btnAgrandar" class="btn btn-dark mt-2">Agrandar cuadro</button>
-            <button type="button" style="display:none" id="btnAchicar" class="btn btn-dark mt-2 mb-5">Achicar cuadro</button>
+            <button type="button" style="display:none" id="btnAchicar" class="btn btn-dark mt-2 mb-5" >Achicar cuadro</button>
         </div>
     </section>   
 
 <?php include("../template/footer.php") ?>
-<script>
 
+<!-- //! GENERAR GRAFICOS ---------------------------------- -->
+
+<script>
     //Graficos
 const grafico1 = document.getElementById('myChart');
     const myChart = new Chart(grafico1, {
@@ -56,21 +74,21 @@ const grafico1 = document.getElementById('myChart');
         labels: [
 
         <?php
-            foreach ($listaTotal as $total ) {
+            foreach ($listaCompras as $compras ) {
         ?>
-                '<?php echo "$total[nombre]" ?>',
+                '<?php echo "$compras[nombre]" . " - " . $compras["medida"] ?>',
         <?php
             }
         ?>
 
         ],
         datasets: [{
-            label: 'Vendidos',
+            label: 'Ingresos',
             data: [
                 <?php
-            foreach ($listaTotal as $total ) {
+            foreach ($listaCompras as $compras ) {
         ?>
-                '<?php echo "$total[cantidad]" ?>',
+                '<?php echo "$compras[cantidad]" ?>',
         <?php
             }
         ?>
@@ -99,7 +117,7 @@ const grafico1 = document.getElementById('myChart');
     plugins: {
             title: {
                 display: true,
-                text: 'Cantidad por trago'
+                text: 'Ingresos stock por productos y medidas'
             }
         }
     }
@@ -112,21 +130,21 @@ const grafico2 = document.getElementById('myChart1');
         labels: [
 
         <?php
-           foreach ($listaTotal as $total ) {
+           foreach ($listaDescuento as $productos ) {
         ?>
-                '<?php echo "$total[nombre]" ?>',
+                '<?php echo "$productos[nombre]" . " - " . $productos["medida"] ?>',
         <?php
             }
         ?>
 
         ],
         datasets: [{
-            label: '$',
+            label: 'Vendidos',
             data: [
         <?php
-             for ($i=0; $i < count($precios); $i++) {
+             foreach ($listaDescuento as $productos) {
         ?>
-                "<?php echo $precios[$i] ?>",
+                '<?php echo "$productos[cantidad]" ?>',
         <?php
             }
         ?>
@@ -155,15 +173,12 @@ const grafico2 = document.getElementById('myChart1');
     plugins: {
             title: {
                 display: true,
-                text: "Ingresos por trago"
+                text: "Productos vendidos"
             }
         }
     }
 });
 </script>
-<?php
-}
-?>
 
 <script>
     btnAgrandar = document.querySelector("#btnAgrandar");
@@ -198,5 +213,3 @@ const grafico2 = document.getElementById('myChart1');
         btnAchicar.style.display = "none";
     }
 </script>
-
-    
